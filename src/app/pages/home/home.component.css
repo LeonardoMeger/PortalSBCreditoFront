@@ -1,0 +1,21 @@
+.form-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;  /* Espaço entre os campos */
+  }
+  
+  .form-field {
+    width: calc(25% - 20px);  /* 4 campos por linha com um espaçamento de 20px */
+  }
+  
+  @media (max-width: 768px) {
+    .form-field {
+      width: calc(50% - 20px);  /* 2 campos por linha em telas menores */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .form-field {
+      width: 100%;  /* 1 campo por linha em telas ainda menores */
+    }
+  }

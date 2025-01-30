@@ -1,0 +1,115 @@
+<div class="container mt-5">
+  <h2>Cadastrar Novo Título</h2>
+  <form [formGroup]="tituloForm" (ngSubmit)="criarTitulo()">
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="cnpj">CNPJ</label>
+        <input id="cnpj" formControlName="cnpj" type="text" />
+      </div>
+      <div class="form-field">
+        <label for="name">Nome</label>
+        <input id="name" formControlName="name" type="text" />
+      </div>
+      <div class="form-field">
+        <label for="fone">Telefone</label>
+        <input id="fone" formControlName="fone" type="text" />
+      </div>
+
+      <div class="form-field">
+        <label for="address">Endereço</label>
+        <input id="address" formControlName="address" type="text" />
+      </div>
+      <div class="form-field">
+        <label for="district">Bairro</label>
+        <input id="district" formControlName="district" type="text" />
+      </div>
+      <div class="form-field">
+        <label for="city">Cidade</label>
+        <input id="city" formControlName="city" type="text" />
+      </div>
+      <div class="form-field">
+        <label for="state">Estado</label>
+        <input id="state" formControlName="state" type="text" />
+      </div>
+
+      <div class="form-field">
+        <label for="covarage">Lastro</label>
+        <input id="covarage" formControlName="covarage" type="text" />
+      </div>
+      <div class="form-field">
+        <label for="issueDate">Data de Emissão</label>
+        <input id="issueDate" formControlName="issueDate" type="date" />
+      </div>
+      <div class="form-field">
+        <label for="value">Valor</label>
+        <input id="value" formControlName="value" type="number" />
+      </div>
+      <div class="form-field">
+        <label for="discount">Desconto</label>
+        <input id="discount" formControlName="discount" type="number" />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
+</div>
+
+<div class="container mt-5">
+  <!-- <button class="btn btn-success w-100"> Cadastrar titulos</button> -->
+
+  <div class="d-flex justify-content-between mt-5">
+    <div class="mt-7">Remessa de titulo para analise</div>
+    <div class="total-box d-flex align-items-start flex-column mb-3 btn bg-secondary w-20">
+      <button class="btn btn-success" (click)="navegarParaDashboard()">Enviar</button>
+      <strong>Total Líquido:</strong> {{ getTotal() | currency:'BRL' }}
+    </div>
+  </div>
+  <table class="table table-hover table-bordered">
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>cnpj</th>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>Endereço</th>
+        <th>Bairro</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+        <th>Lastro</th>
+        <th>Data de Emissão</th>
+        <th>Valor</th>
+        <th>Desconto</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngIf="titulos.length === 0" class="text-center">
+        <td colspan="12">Nenhum título cadastrado</td>
+      </tr>
+
+      <tr *ngFor="let titulos of titulos; trackBy: trackById">
+        <td>{{ titulos.id }}</td>
+        <td>{{ titulos.cnpj }}</td>
+        <td>{{ titulos.name }}</td>
+        <td>{{ titulos.fone }}</td>
+        <td>{{ titulos.address }}</td>
+        <td>{{ titulos.district }}</td>
+        <td>{{ titulos.city }}</td>
+        <td>{{ titulos.state }}</td>
+        <td>{{ titulos.covarage }}</td>
+        <td>{{ titulos.issueDate | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ titulos.value | currency }}</td>
+        <td>{{ titulos.discount | currency }}</td>
+        <td>
+          <!-- <button class="btn btn-danger mx-2" (click)="deletar(titulos.id)">Excluir</button> -->
+
+
+          <button class="btn btn-danger mx-2" (click)="deletar(titulos.id)">Excluir</button>
+        </td>
+      </tr>
+
+
+    </tbody>
+  </table>
+</div>
